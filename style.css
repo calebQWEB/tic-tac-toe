@@ -1,0 +1,376 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --background: #669796;
+    --buttons: #258180;
+    --shadow: #0e4e4d;
+    --exes: #99e5e4;
+    --main-background: #41857e;
+    --zeros: #e6e613;
+    --grey: rgb(202, 202, 202);
+}
+
+body {
+    background-color: var(--buttons);
+}
+
+
+main {
+    position: relative;
+    background-color: var(--buttons);
+
+    min-height: 100vh;
+    height: 100%;
+    padding: 4rem;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 2rem;
+    border: 3px solid var(--shadow);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.tic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.tic-x {
+    font-size: 40px;
+    font: bolder;
+    color: var(--exes);
+}
+
+.tic-o {
+    font-size: 40px;
+    font: bolder;
+    color: var(--zeros);
+}
+
+.turn {
+    background-color: var(--background);
+    padding: 0.8rem;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.turn P {
+    font-size: 20px;
+    font: 700;
+    color: var(--grey);
+}
+
+.turn span {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--grey);
+}
+
+.reset {
+    background-color: var(--grey);
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    font: bold;
+    color: var(--shadow);
+    cursor: pointer;
+}
+
+.reset:hover {
+    background-color: var(--background);
+    color: white;
+}
+
+.reset:active {
+    color: var(--shadow);
+    transition: none;
+}
+
+.game {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-gap: 1rem;
+}
+
+
+.game button {
+    width: 120px;
+    height: 120px;
+    background-color: var(--background);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    box-shadow: 0px 4px 0px var(--shadow), 0px 2px 2px var(--shadow);
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game button:active {
+    box-shadow: none;
+}
+
+.buttons.x,
+.buttons.o {
+    cursor: not-allowed;
+}
+
+.buttons.x::before,
+.buttons.x::after {
+    content: '';
+    background-color: var(--exes);
+    width: 10px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    border-radius: 5px;
+
+}
+
+.buttons.x::before {
+    transform: rotate(45deg);
+}
+
+.buttons.x::after {
+    transform: rotate(-45deg);
+}
+
+.buttons.o::before,
+.buttons.o::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+
+}
+
+.buttons.o::before {
+    background-color: var(--zeros);
+    width: 80px;
+    height: 80px;
+}
+
+.buttons.o::after {
+    width: 60px;
+    height: 60px;
+    background-color: var(--background);
+}
+
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.bottom div {
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.you {
+    background-color: var(--exes);
+}
+
+.you span,
+.you p {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.tries {
+    background-color: var(--shadow);
+}
+
+.tries span,
+.tries p {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.opponent {
+    background-color: var(--zeros);
+}
+
+.opponent span,
+.opponent p {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+
+.win {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.win p {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    color: var(--grey);
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.win-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.win-button button {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.win-button button:active {
+    box-shadow: none;
+}
+
+.restart {
+    background-color: var(--background);
+    color: black;
+    font-weight: 900;
+    box-shadow: 0 2px 0 var(--shadow), 0 2px 0 var(--shadow);
+}
+
+
+@media screen and (max-width: 550px) {
+    .game {
+        grid-template-columns: repeat(3, auto);
+    }
+
+    .game button {
+        width: 100px;
+        height: 100px;
+    }
+
+    .turn {
+        padding: 0.3rem;
+    }
+
+    .turn p {
+        font-size: 15px;
+    }
+
+    .turn span {
+        font-size: 15px;
+    }
+
+    .reset {
+        height: 30px;
+        width: 30px;
+    }
+
+    .reset i {
+        font-size: 18px;
+    }
+
+    .tic i {
+        font-size: 25px;
+    }
+
+    .buttons.x::before,
+    .buttons.x::after {
+        height: 80px;
+    }
+
+    .buttons.o::before {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .buttons.o::after {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+
+    .game button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .buttons.x::before,
+    .buttons.x::after {
+        width: 8px;
+        height: 50px;
+    }
+
+    .buttons.o::before {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .buttons.o::after {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .header {
+        gap: 2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .game button {
+        width: 60px;
+        height: 60px;
+    }
+}
